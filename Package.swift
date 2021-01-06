@@ -12,6 +12,10 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+//        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0-rc"),
+        .package(url: "https://github.com/binarybirds/content-api.git", from: "1.0.0"),
+//        .package(url: "https://github.com/binarybirds/view-kit.git", .exact("1.1.0")),
+//        .package(url: "https://github.com/binarybirds/view-kit.git",  from: "1.2.0"),
     ],
     targets: [
         .target(
@@ -20,6 +24,8 @@ let package = Package(
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "Leaf", package: "leaf"),
+                .product(name: "ContentApi", package: "content-api"),
+//                .product(name: "ViewKit", package: "view-kit"),
                 .product(name: "Vapor", package: "vapor")
             ],
             swiftSettings: [

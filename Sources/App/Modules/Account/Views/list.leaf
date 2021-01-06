@@ -1,0 +1,49 @@
+#extend("index"):
+    #export("body"):
+        
+        <a href="/accounts/new">Create new</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Foo</th>
+                    <th>Bar</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            #for(item in list):
+                <tr>
+                    <td>#(item.id)</td>
+                    <td>#(item.name)</td>
+                    <td>#(item.amount)</td>
+                    <td>
+                        <a href="/accounts/#(item.id)">Edit</a> &middot;
+                        <a id="#(item.id)" href="#" onClick="confirmDelete('/accounts/', this.id);">Delete</a>
+                    </td>
+                </tr>
+            #endfor
+            </tbody>
+        </table>
+
+        <script>
+        function confirmDelete(path, id) {
+          if (confirm("Press ok to confirm delete.")) {
+             var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                    if (xmlHttp.readyState != 4 || xmlHttp.status != 200) {
+                        return
+                    }
+                    console.warn(xmlHttp.responseText)
+                    var element = document.getElementById(id)
+                    var tr = element.parentElement.parentElement
+                    tr.parentNode.removeChild(tr)
+                }
+                xmlHttp.open("POST", path + id + "/delete", true);
+                xmlHttp.send(null);
+          }
+        }
+        </script>
+
+    #endexport
+#endextend

@@ -1,0 +1,36 @@
+#extend("index"):
+    #export("body"):
+
+        #if(edit.id != null):
+            <h2>Edit</h2>
+        #else:
+            <h2>Create</h2>
+        #endif
+
+        <form method="post" action="/accounts/#if(edit.id != nil):#(edit.id)#else:new#endif" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="#(edit.id)">
+
+            <section>
+                <label for="name">Foo</label>
+                <input type="text" id="name" name="name" value="#(edit.name.value)">
+                #if(edit.name.error != nil):
+                    #(edit.name.error)
+                #endif
+            </section>
+
+            <section>
+                <label for="amount">Bar</label>
+                <input type="text" id="amount" name="amount" value="#(edit.amount.value)">
+                #if(edit.amount.error != nil):
+                    #(edit.amount.error)
+                #endif
+            </section>
+
+            <section>
+                <input type="submit" value="Save">
+            </section>
+        </form>
+
+    #endexport
+#endextend
+
